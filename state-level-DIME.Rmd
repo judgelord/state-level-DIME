@@ -71,6 +71,80 @@ d %>%
 ggsave("Figs/bonica-2-does-cross-0.pdf", height = 3, width = 3.5)
 ```
 
+```{r bonica-3-by-distance, fig.height = 5, fig.width = 3.5}
+# fig 2 - by distance
+d %>% 
+  ggplot() +
+  geom_point(aes(x = Governor, y = reorder(state, distance_1_gov_leg_med)), shape = "G", color = "black") + 
+  geom_point(aes(x = Lower, y = reorder(state, distance_1_gov_leg_med)), shape = "L", color = "purple") + 
+  geom_point(aes(x = Upper, y = reorder(state, distance_1_gov_leg_med)), shape = "U", color = "orange") + 
+  labs(y = "", x = "Ideology", title = "Political Principals") + 
+  scale_x_continuous(breaks = c(-1, 0, 1)) + 
+  facet_grid(. ~ year, scales = "free_y", space = "free_y") + 
+  theme_minimal() + 
+  theme(axis.text.y = element_text(size = 5), title = element_text(size = 7)) 
+
+ggsave("Figs/bonica-3-by-distance.pdf", height = 5, width = 3.5)
+```
+
+
+```{r bonica-4-alphabetical, fig.height = 5, fig.width = 2.5}
+# fig 4 - alphabetical
+d %>% 
+  ggplot() +
+  geom_point(aes(x = Governor, y = state), shape = "G", color = "black") + 
+  geom_point(aes(x = Lower, y = state), shape = "L", color = "purple") + 
+  geom_point(aes(x = Upper, y = state), shape = "U", color = "orange") + 
+  labs(y = "", x = "Ideology", title = "Political Principals") + 
+  scale_x_continuous(breaks = c(-1, 0, 1)) + 
+  facet_grid(. ~ year) + 
+  theme_minimal() + 
+  theme(axis.text.y = element_text(size = 5), title = element_text(size = 7)) 
+
+ggsave("Figs/bonica-4-alphabetical.pdf", height = 5, width = 2.5)
+```
+```{r bonica-5-all-2004, fig.height = 5, fig.width = 3}
+# fig 5 - All kinds Political Principals
+# states sorted by distance_1_gov_leg_med
+d %>% 
+  filter(year == 2004) %>%
+  mutate(party = ifelse(dist_1_x_zero == 0 & Governor < 0, "All Liberal", "Divided Government")) %>% 
+  mutate(party = ifelse(dist_1_x_zero == 0 & Governor > 0, "All Conservative", party)) %>%
+  mutate(party = ifelse(is.na(dist_1_x_zero) & Governor > 0, "All Conservative", party)) %>%
+  ggplot() +
+  geom_point(aes(x = Governor, y = reorder(state, distance_1_gov_leg_med)), shape = "G", color = "black") + 
+  geom_point(aes(x = Lower, y = reorder(state, distance_1_gov_leg_med)), shape = "L", color = "purple") + 
+  geom_point(aes(x = Upper, y = reorder(state, distance_1_gov_leg_med)), shape = "U", color = "orange") + 
+  labs(y = "States by Ideological Spread", x = "Mean Ideology Score", title = "Ideological Spread of Political Principals") +
+  scale_x_continuous(breaks = c(-1, 0, 1)) + 
+  facet_grid(party ~ ., scales = "free_y", space = "free_y") + 
+  theme_minimal() + 
+  theme(axis.text.y = element_text(size = 5), title = element_text(size = 7)) 
+
+ggsave("Figs/bonica-5-all-2004.pdf", height = 5, width = 3)
+```
+```{r bonica-5-all-2008, fig.height = 5, fig.width = 3}
+# fig 5 - All kinds Political Principals
+# states sorted by distance_1_gov_leg_med
+d %>% 
+  filter(year == 2008) %>%
+  mutate(party = ifelse(dist_1_x_zero == 0 & Governor < 0, "All Liberal", "Divided Government")) %>% 
+  mutate(party = ifelse(dist_1_x_zero == 0 & Governor > 0, "All Conservative", party)) %>%
+  mutate(party = ifelse(is.na(dist_1_x_zero) & Governor > 0, "All Conservative", party)) %>%
+  ggplot(aes(y = reorder(state, distance_1_gov_leg_med))) +
+  geom_point(aes(x = Governor, color = Governor), shape = "G") + 
+  geom_point(aes(x = Lower, color = Lower), shape = "L") + 
+  geom_point(aes(x = Upper, color = Upper), shape = "U") + 
+  labs(y = "States by Ideological Spread", x = "Mean Ideology Score", title = "Ideological Spread of Political Principals", color = "") +
+  scale_x_continuous(breaks = c(-1, 0, 1)) + 
+  scale_colour_gradient2(low = "blue", mid = "black", high = "red") +
+  facet_grid(party ~ ., scales = "free_y", space = "free_y") + 
+  theme_minimal() + 
+  theme(axis.text.y = element_text(size = 5), title = element_text(size = 7), legend.position = "none") 
+
+ggsave("Figs/bonica-5-all-2008.pdf", height = 5, width = 3)
+```
+
 As .pdf
 ```{r pdf1, fig.cap = "", include = FALSE}
 # knitr::include_graphics("bonica-1-does-NOT-cross-0.pdf")
