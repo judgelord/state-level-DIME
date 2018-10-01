@@ -5,7 +5,7 @@ code_folding: hide
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, 
+knitr::opts_chunk$set(echo = TRUE, 
                       cache = F,
                       #fig.ext = ".pdf",
                       fig.align = 'center', fig.path='Figs/',
@@ -14,13 +14,15 @@ knitr::opts_chunk$set(echo = FALSE,
 requires <- c("tidyverse", "readstata13")
   to_install <- c(requires %in% rownames(installed.packages()) == FALSE)
   install.packages(c(requires[to_install], "NA"), repos = "https://cloud.r-project.org/")
-library(readstata13)
-library(tidyverse)
-  library(knitr)
+  
+library(knitr)
 ```
 
 Using Bonica's state level data
 ```{r data}
+library(readstata13)
+library(tidyverse)
+
 # Get Bonica's state level data
 d <- readstata13::read.dta13("BonicaStateLevel.dta")
 
@@ -33,14 +35,13 @@ d %<>%
 
 As .png
 ```{r bonica-1-does-NOT-cross-0, fig.height = 4, fig.width = 3.5}
-# fig 1 Political Principals All Democrats OR Republicans
-# dist_1_x_zero == 0
-# sorted by distance_1_gov_leg_med
+# fig 1 - Political Principals All Democrats OR Republicans (dist_1_x_zero == 0)
+# states sorted by distance_1_gov_leg_med
 d %>% 
   filter(dist_1_x_zero == 0) %>% 
   mutate(party = ifelse(dist_1_x_zero == 0 & Governor<0, "All Democrats", "All Republicans")) %>% 
-ggplot() +
-  geom_point(aes(x = Governor, y = reorder(state, distance_1_gov_leg_med)), shape = "G", color = 1) + 
+  ggplot() +
+  geom_point(aes(x = Governor, y = reorder(state, distance_1_gov_leg_med)), shape = "G", color = "black") + 
   geom_point(aes(x = Lower, y = reorder(state, distance_1_gov_leg_med)), shape = "L", color = "purple") + 
   geom_point(aes(x = Upper, y = reorder(state, distance_1_gov_leg_med)), shape = "U", color = "orange") + 
   labs(y = "", x = "", title = "Political Principals All Democrats OR Republicans") + 
@@ -48,8 +49,8 @@ ggplot() +
   facet_grid(party ~ year, scales = "free_y", space = "free_y") + 
   theme_minimal() + 
   theme(axis.text.y = element_text(size = 5), title = element_text(size = 7)) 
-ggsave("Figs/bonica-1-does-NOT-cross-0.pdf", height = 4, width = 3)
 
+ggsave("Figs/bonica-1-does-NOT-cross-0.pdf", height = 4, width = 3)
 ```
 
 ```{r bonica-2-does-cross-0, fig.height = 3, fig.width = 3.5}
@@ -58,22 +59,24 @@ d %>%
   filter(dist_1_x_zero == 1) %>% 
   # mutate(party = "Divided Government") %>% 
   ggplot() +
-  geom_point(aes(x = Governor, y = reorder(state, distance_1_gov_leg_med)), shape = "G", color = 1) + 
+  geom_point(aes(x = Governor, y = reorder(state, distance_1_gov_leg_med)), shape = "G", color = "black") + 
   geom_point(aes(x = Lower, y = reorder(state, distance_1_gov_leg_med)), shape = "L", color = "purple") + 
   geom_point(aes(x = Upper, y = reorder(state, distance_1_gov_leg_med)), shape = "U", color = "orange") + 
   labs(y = "", x = "", title = "Political Principals Include Democrats & Republicans") + 
   scale_x_continuous(breaks = c(-1, 0, 1)) + 
   facet_grid(. ~ year, scales = "free_y", space = "free_y") + 
-  theme_minimal() + theme(axis.text.y = element_text(size = 5), title = element_text(size = 7)) 
+  theme_minimal() + 
+  theme(axis.text.y = element_text(size = 5), title = element_text(size = 7)) 
+
 ggsave("Figs/bonica-2-does-cross-0.pdf", height = 3, width = 3)
 ```
 
 As .pdf
-```{r pdf1, fig.cap = ""}
-knitr::include_graphics("bonica-1-does-NOT-cross-0.pdf")
+```{r pdf1, fig.cap = "", include = FALSE}
+# knitr::include_graphics("bonica-1-does-NOT-cross-0.pdf")
 ```
 
-```{r pdf2, fig.cap = ""}
+```{r pdf2, fig.cap = "", include = FALSE}
 #knitr::include_graphics("bonica-2-does-cross-0.pdf")
 
 ```
