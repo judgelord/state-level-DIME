@@ -44,13 +44,13 @@ d %>%
   geom_point(aes(x = Governor, y = reorder(state, distance_1_gov_leg_med)), shape = "G", color = "black") + 
   geom_point(aes(x = Lower, y = reorder(state, distance_1_gov_leg_med)), shape = "L", color = "purple") + 
   geom_point(aes(x = Upper, y = reorder(state, distance_1_gov_leg_med)), shape = "U", color = "orange") + 
-  labs(y = "", x = "", title = "Political Principals All Democrats OR Republicans") + 
+  labs(y = "", x = "", title = "Political Principals are All Democrats OR Republicans") + 
   scale_x_continuous(breaks = c(-1, 0, 1)) + 
   facet_grid(party ~ year, scales = "free_y", space = "free_y") + 
   theme_minimal() + 
   theme(axis.text.y = element_text(size = 5), title = element_text(size = 7)) 
 
-ggsave("Figs/bonica-1-does-NOT-cross-0.pdf", height = 4, width = 3)
+ggsave("Figs/bonica-1-does-NOT-cross-0.pdf", height = 4, width = 3.5)
 ```
 
 ```{r bonica-2-does-cross-0, fig.height = 3, fig.width = 3.5}
@@ -68,7 +68,7 @@ d %>%
   theme_minimal() + 
   theme(axis.text.y = element_text(size = 5), title = element_text(size = 7)) 
 
-ggsave("Figs/bonica-2-does-cross-0.pdf", height = 3, width = 3)
+ggsave("Figs/bonica-2-does-cross-0.pdf", height = 3, width = 3.5)
 ```
 
 As .pdf
