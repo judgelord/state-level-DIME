@@ -115,7 +115,7 @@ d %>%
   geom_point(aes(x = Governor, color = Governor), shape = "G") + 
   geom_point(aes(x = Lower, color = Lower), shape = "L") + 
   geom_point(aes(x = Upper, color = Upper), shape = "U") + 
-  labs(y = "States by Ideological Spread", x = "Mean Ideology Score", title = "Ideological Spread of Political Principals in 2003", color = "") +
+  labs(y = "States by Preference Divergence", x = "Mean Ideology Score", title = "Preference Divergence of Political Principals, 2003", color = "") +
   scale_x_continuous(breaks = c(-1, 0, 1)) + 
   scale_colour_gradient2(low = "blue", mid = "purple", high = "red") +
   facet_grid(party ~ ., scales = "free_y", space = "free_y") + 
@@ -136,7 +136,7 @@ d %>%
   geom_point(aes(x = Governor, color = Governor), shape = "G") + 
   geom_point(aes(x = Lower, color = Lower), shape = "L") + 
   geom_point(aes(x = Upper, color = Upper), shape = "U") + 
-  labs(y = "States by Ideological Spread", x = "Mean Ideology Score", title = "Ideological Spread of Political Principals in 2007", color = "") +
+  labs(y = "States by Preference Divergence", x = "Mean Ideology Score", title = "Preference Divergence of Political Principals, 2007", color = "") +
   scale_x_continuous(breaks = c(-1, 0, 1)) + 
   scale_colour_gradient2(low = "blue", mid = "purple", high = "red") +
   facet_grid(party ~ ., scales = "free_y", space = "free_y") + 
