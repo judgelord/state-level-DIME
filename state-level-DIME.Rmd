@@ -107,20 +107,20 @@ ggsave("Figs/bonica-4-alphabetical.pdf", height = 5, width = 2.5)
 # fig 5 - All kinds Political Principals
 # states sorted by distance_1_gov_leg_med
 d %>% 
-  filter(year == 2004, state != "NH") %>%
-    mutate(party = ifelse(dist_1_x_zero == 0 & Governor < 0, "All Liberal", "Divided Government")) %>% 
+  filter(year == 2004, state != "NH", state != "NE") %>%
+  mutate(party = ifelse(dist_1_x_zero == 0 & Governor < 0, "All Liberal", "Divided Government")) %>% 
   mutate(party = ifelse(dist_1_x_zero == 0 & Governor > 0, "All Conservative", party)) %>%
   mutate(party = ifelse(is.na(dist_1_x_zero) & Governor > 0, "All Conservative", party)) %>%
   mutate(Lower = Lower - .0000001) %>% 
   mutate(min = pmin(Governor, Lower, Upper), max = pmax(Governor, Lower, Upper) ) %>% 
   ggplot(aes(y = reorder(state, distance_1_gov_leg_med))) +
-  geom_segment(aes(x = min, xend = max, yend = reorder(state, distance_1_gov_leg_med)), color = "grey", size = 2.1, lineend = "round") + 
+  geom_segment(aes(x = min, xend = max, yend = reorder(state, distance_1_gov_leg_med)), color = "grey", size = 2.1, lineend = "round", alpha = .3) + 
   geom_point(aes(x = Governor, color = Governor), shape = "G") + 
   geom_point(aes(x = Lower, color = Lower), shape = "L") + 
   geom_point(aes(x = Upper, color = Upper), shape = "U") + 
   labs(y = "States by Preference Divergence", x = "Mean Ideology Score", title = "Preference Divergence of Political Principals, 2003", color = "") +
   scale_x_continuous(breaks = c(-1, 0, 1)) + 
-  scale_colour_gradient2(low = "blue", mid = "purple", high = "red") +
+  scale_colour_gradient2(low = "blue", mid = "black", high = "red") +
   facet_grid(party ~ ., scales = "free_y", space = "free_y") + 
   theme_minimal() + 
   theme(axis.text.y = element_text(size = 5), title = element_text(size = 7), legend.position = "none") 
@@ -136,11 +136,9 @@ d %>%
   mutate(party = ifelse(dist_1_x_zero == 0 & Governor < 0, "All Liberal", "Divided Government")) %>% 
   mutate(party = ifelse(dist_1_x_zero == 0 & Governor > 0, "All Conservative", party)) %>%
   mutate(party = ifelse(is.na(dist_1_x_zero) & Governor > 0, "All Conservative", party)) %>%
-  mutate(Lower = Lower - .0000001) %>% 
-  mutate(Upper = Upper + .0000001) %>% 
   mutate(min = pmin(Governor, Lower, Upper, na.rm = T), max = pmax(Governor, Lower, Upper, na.rm = T) ) %>% 
   ggplot(aes(y = reorder(state, distance_1_gov_leg_med))) +
-  geom_segment(aes(x = min, xend = max, yend = reorder(state, distance_1_gov_leg_med)), color = "grey", size = 2.1, lineend = "round") + 
+  geom_segment(aes(x = min, xend = max, yend = reorder(state, distance_1_gov_leg_med)), color = "grey", size = 2.1, lineend = "round", alpha = .3) + 
   geom_point(aes(x = Governor, color = Governor), shape = "G") + 
   geom_point(aes(x = Lower, color = Lower), shape = "L") + 
   geom_point(aes(x = Upper, color = Upper), shape = "U") + 
@@ -149,7 +147,7 @@ d %>%
        title = "Preference Divergence of Political Principals, 2007", 
        color = "") +
   scale_x_continuous(breaks = c(-1, 0, 1)) + 
-  scale_colour_gradient2(low = "blue", mid = "purple", high = "red") +
+  scale_colour_gradient2(low = "blue", mid = "black", high = "red") +
   facet_grid(party ~ ., scales = "free_y", space = "free_y") + 
   theme_minimal() + 
   theme(axis.text.y = element_text(size = 5), title = element_text(size = 7), legend.position = "none") 
