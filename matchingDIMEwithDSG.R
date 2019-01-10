@@ -126,3 +126,8 @@ df %<>% select(potential_matches, match, LAST_NAME, FIRST_NAME, MIDDLE_NAME, mos
 # write out best guesses in order
 write.csv(df, 
           "data/DIME-DSG-matches.csv")
+
+
+
+df %>% group_by(most.recent.contributor.occupation) %>% 
+  summarise(n = n()) %>% arrange(-n)
