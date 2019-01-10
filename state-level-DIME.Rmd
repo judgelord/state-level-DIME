@@ -18,7 +18,7 @@ requires <- c("tidyverse", "readstata13")
 library(knitr)
 ```
 
-Using Bonica's state level data
+Adam Bonica's DIME data: 
 ```{r data}
 library(readstata13)
 library(tidyverse)
@@ -33,8 +33,8 @@ d %<>%
   rename(Upper = u_cf_median)
 ```
 
-As .png
-```{r bonica-1-does-NOT-cross-0, fig.height = 4, fig.width = 3.5}
+
+```{r bonica-1-does-NOT-cross-0, fig.height = 4, fig.width = 3.5, include=FALSE}
 # fig 1 - Political Principals All Democrats OR Republicans (dist_1_x_zero == 0)
 # states sorted by distance_1_gov_leg_med
 d %>% 
@@ -53,7 +53,7 @@ d %>%
 ggsave("Figs/bonica-1-does-NOT-cross-0.pdf", height = 4, width = 3.5)
 ```
 
-```{r bonica-2-does-cross-0, fig.height = 3, fig.width = 3.5}
+```{r bonica-2-does-cross-0, fig.height = 3, fig.width = 3.5, include = FALSE}
 # fig 2 - Political Principals Include Democrats and Republicans
 d %>% 
   filter(dist_1_x_zero == 1) %>% 
@@ -71,6 +71,8 @@ d %>%
 ggsave("Figs/bonica-2-does-cross-0.pdf", height = 3, width = 3.5)
 ```
 
+
+Comparing 2004 and 2008 scores for governor (G) and upper (U) and lower (L) chambers of state legislatures legislatures (sorted by ideological distance):
 ```{r bonica-3-by-distance, fig.height = 5, fig.width = 3.5}
 # fig 2 - by distance
 d %>% 
@@ -88,7 +90,7 @@ ggsave("Figs/bonica-3-by-distance.pdf", height = 5, width = 3.5)
 ```
 
 
-```{r bonica-4-alphabetical, fig.height = 5, fig.width = 2.5}
+```{r bonica-4-alphabetical, fig.height = 5, fig.width = 2.5, include = FALSE}
 # fig 4 - alphabetical
 d %>% 
   ggplot() +
@@ -102,7 +104,9 @@ d %>%
   theme(axis.text.y = element_text(size = 5), title = element_text(size = 7)) 
 
 ggsave("Figs/bonica-4-alphabetical.pdf", height = 5, width = 2.5)
-```
+``` 
+
+2004 scores for governor (G) and upper (U) and lower (L) chambers of state legislatures legislatures:
 ```{r bonica-5-all-2004, fig.height = 5, fig.width = 3.1}
 # fig 5 - All kinds Political Principals
 # states sorted by distance_1_gov_leg_med
@@ -126,7 +130,9 @@ d %>%
   theme(axis.text.y = element_text(size = 5), title = element_text(size = 7), legend.position = "none") 
 
 ggsave("Figs/bonica-5-all-2004.pdf", height = 5, width = 3.1)
-```
+``` 
+
+2008 scores for governor (G) and upper (U) and lower (L) chambers of state legislatures legislatures:
 ```{r bonica-5-all-2008, fig.height = 5, fig.width = 3.1}
 # fig 5 - All kinds Political Principals
 # states sorted by distance_1_gov_leg_med
