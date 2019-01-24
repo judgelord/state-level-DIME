@@ -28,7 +28,7 @@ source(here("setup.R"))
 # save(dime, file = here("data/dime_CGS_matches.Rdata"))
 
 # LOAD
-# load(here("data/dime_CGS_matches.Rdata"))
+load(here("data/dime_CGS_matches.Rdata"))
 
 # inspect
 cbind(
@@ -41,10 +41,12 @@ cbind(
 #######################################################
 # CGS #
 #######
-d <- readxl::read_xlsx(here("data/CSG-Directory.xlsx")) %>% 
+d <- readxl::read_xlsx(here("data/CSG Directory.xlsx")) %>% 
   filter(!is.na(LAST_NAME)) %>%
-  mutate(id = row_number(), match = NA) %>%
-  select(-num.records, -num.distinct, -contributor.cfscore) 
+  mutate(id = row_number(), match = NA) %>% # add id
+  rename(WORK_CITY = CITY) %>% 
+  rename(WORK_ADDRESS_1 = ADDRESS_1) %>%
+  rename(WORK_ADDRESS_2 = ADDRESS_2) 
 
 original <- d %<>% 
   mutate(last_name = tolower(LAST_NAME) ) %>%
@@ -59,16 +61,16 @@ names(dime)[names(dime) %in% names(d)]
 
 # zip = most restrictive match = 61
 d %<>% mutate(most.recent.contributor.zipcode = as.integer(ZIP)) 
-d1 <- inner_join(d, dime) 
-write.csv(d1 %>% select(match, LAST_NAME, FIRST_NAME, MIDDLE_NAME, most.recent.contributor.name, `WORK CITY`, most.recent.contributor.city, `WORK ADDRESS_1`,`WORK ADDRESS_2`,most.recent.contributor.address, most.recent.contributor.occupation, most.recent.contributor.employer, bonica.cid, id), 
+d1 <- inner_join(d, dime)
+write.csv(d1 %>% select(match, LAST_NAME, FIRST_NAME, MIDDLE_NAME, most.recent.contributor.name, WORK_CITY, most.recent.contributor.city, WORK_ADDRESS_1,WORK_ADDRESS_2,most.recent.contributor.address, most.recent.contributor.occupation, most.recent.contributor.employer, bonica.cid, id), 
           "data/DIME-DSG-fullname-zip-matches.csv")
 d %<>% filter(!id %in% d1$id)
 
 # city = next most restrictive = 765, 667
 d %<>% select(-most.recent.contributor.zipcode)
-d %<>% mutate(most.recent.contributor.city = tolower(`WORK CITY`))
+d %<>% mutate(most.recent.contributor.city = tolower(WORK_CITY))
 d2 <- inner_join(d, dime) 
-write.csv(d2 %>% select(match, LAST_NAME, FIRST_NAME, MIDDLE_NAME, most.recent.contributor.name, `WORK CITY`, most.recent.contributor.city, `WORK ADDRESS_1`,`WORK ADDRESS_2`,most.recent.contributor.address, most.recent.contributor.occupation, most.recent.contributor.employer, bonica.cid, id), 
+write.csv(d2 %>% select(match, LAST_NAME, FIRST_NAME, MIDDLE_NAME, most.recent.contributor.name, WORK_CITY, most.recent.contributor.city, WORK_ADDRESS_1,WORK_ADDRESS_2,most.recent.contributor.address, most.recent.contributor.occupation, most.recent.contributor.employer, bonica.cid, id), 
           "data/DIME-DSG-fullname-city-matches.csv")
 d %<>% filter(!id %in% d2$id)
 
@@ -76,7 +78,7 @@ d %<>% filter(!id %in% d2$id)
 d %<>% select(-most.recent.contributor.city)
 d %<>% mutate(most.recent.contributor.state = STATE_PROVINCE)
 d3 <- inner_join(d, dime) 
-write.csv(d2 %>% select(match, LAST_NAME, FIRST_NAME, MIDDLE_NAME, most.recent.contributor.name, `WORK CITY`, most.recent.contributor.city, `WORK ADDRESS_1`,`WORK ADDRESS_2`,most.recent.contributor.address, most.recent.contributor.occupation, most.recent.contributor.employer, bonica.cid, id), 
+write.csv(d2 %>% select(match, LAST_NAME, FIRST_NAME, MIDDLE_NAME, most.recent.contributor.name, WORK_CITY, most.recent.contributor.city, WORK_ADDRESS_1,WORK_ADDRESS_2,most.recent.contributor.address, most.recent.contributor.occupation, most.recent.contributor.employer, bonica.cid, id), 
           "data/DIME-DSG-fullname-state-matches.csv")
 d %<>% filter(!id %in% d3$id)
 
@@ -92,15 +94,15 @@ d %<>% select(-first_name)
 # d %<>% select(-most.recent.contributor.state)
 d %<>% mutate(most.recent.contributor.zipcode = as.integer(ZIP)) 
 d4 <- inner_join(d, dime) 
-write.csv(d4 %>% select(match, LAST_NAME, FIRST_NAME, MIDDLE_NAME, most.recent.contributor.name, `WORK CITY`, most.recent.contributor.city, `WORK ADDRESS_1`,`WORK ADDRESS_2`,most.recent.contributor.address, most.recent.contributor.occupation, most.recent.contributor.employer, bonica.cid, id), 
+write.csv(d4 %>% select(match, LAST_NAME, FIRST_NAME, MIDDLE_NAME, most.recent.contributor.name, WORK_CITY, most.recent.contributor.city, WORK_ADDRESS_1,WORK_ADDRESS_2,most.recent.contributor.address, most.recent.contributor.occupation, most.recent.contributor.employer, bonica.cid, id), 
           "data/DIME-DSG-first-initial-zip-matches.csv")
 d %<>% filter(!id %in% d4$id)
 
 # city = next most restrictive = 765, 667
 d %<>% select(-most.recent.contributor.zipcode)
-d %<>% mutate(most.recent.contributor.city = tolower(`WORK CITY`))
+d %<>% mutate(most.recent.contributor.city = tolower(WORK_CITY))
 d5 <- inner_join(d, dime) 
-write.csv(d5 %>% select(match, LAST_NAME, FIRST_NAME, MIDDLE_NAME, most.recent.contributor.name, `WORK CITY`, most.recent.contributor.city, `WORK ADDRESS_1`,`WORK ADDRESS_2`,most.recent.contributor.address, most.recent.contributor.occupation, most.recent.contributor.employer, bonica.cid, id), 
+write.csv(d5 %>% select(match, LAST_NAME, FIRST_NAME, MIDDLE_NAME, most.recent.contributor.name, WORK_CITY, most.recent.contributor.city, WORK_ADDRESS_1,WORK_ADDRESS_2,most.recent.contributor.address, most.recent.contributor.occupation, most.recent.contributor.employer, bonica.cid, id), 
           "data/DIME-DSG-first-initial-city-matches.csv")
 d %<>% filter(!id %in% d5$id)
 
@@ -108,7 +110,7 @@ d %<>% filter(!id %in% d5$id)
 d %<>% select(-most.recent.contributor.city)
 d %<>% mutate(most.recent.contributor.state = STATE_PROVINCE)
 d6 <- inner_join(d, dime) 
-write.csv(d6 %>% select(match, LAST_NAME, FIRST_NAME, MIDDLE_NAME, most.recent.contributor.name, `WORK CITY`, most.recent.contributor.city, `WORK ADDRESS_1`,`WORK ADDRESS_2`,most.recent.contributor.address, most.recent.contributor.occupation, most.recent.contributor.employer, bonica.cid, id), 
+write.csv(d6 %>% select(match, LAST_NAME, FIRST_NAME, MIDDLE_NAME, most.recent.contributor.name, WORK_CITY, most.recent.contributor.city, WORK_ADDRESS_1,WORK_ADDRESS_2,most.recent.contributor.address, most.recent.contributor.occupation, most.recent.contributor.employer, bonica.cid, id), 
           "data/DIME-DSG-fullname-state-matches.csv")
 d %<>% filter(!id %in% d6$id)
 
@@ -122,12 +124,12 @@ sum(df$potential_matches>1)
 df %<>% rename(DSG.id = id)
 
 # select 
-df %<>% select(potential_matches, match, LAST_NAME, FIRST_NAME, MIDDLE_NAME, most.recent.contributor.name, most.recent.contributor.occupation, most.recent.contributor.employer, `WORK CITY`, most.recent.contributor.city, `WORK ADDRESS_1`,`WORK ADDRESS_2`,most.recent.contributor.address, bonica.cid, DSG.id)
+df %<>% select(potential_matches, match, LAST_NAME, FIRST_NAME, MIDDLE_NAME, most.recent.contributor.name, EMAIL, CATEGORY, most.recent.contributor.occupation, DEPARTMENT, most.recent.contributor.employer, WORK_CITY, most.recent.contributor.city, WORK_ADDRESS_1,WORK_ADDRESS_2,most.recent.contributor.address, DSG.id, bonica.cid)
 # write out best guesses in order
 write.csv(df, 
           "data/DIME-DSG-matches.csv")
 
 
-
+# top professions
 df %>% group_by(most.recent.contributor.occupation) %>% 
   summarise(n = n()) %>% arrange(-n)
