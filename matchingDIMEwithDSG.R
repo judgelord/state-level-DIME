@@ -83,8 +83,8 @@ write.csv(d2 %>% select(match, LAST_NAME, FIRST_NAME, MIDDLE_NAME, most.recent.c
 d %<>% filter(!id %in% d3$id)
 
 # NOW JUST FIRST INITIAL 
-# restore
-d <- original
+# restore if you want to include those matched above (this means duplicates)
+# d <- original
 d$first_initial <- str_sub(d$first_name, 1,1)
 d %<>% select(-first_name)
 
@@ -129,6 +129,7 @@ df %<>% select(potential_matches, match, LAST_NAME, FIRST_NAME, MIDDLE_NAME, mos
 write.csv(df, 
           "data/DIME-DSG-matches.csv")
 
+n_distinct(df)
 
 # top professions
 df %>% group_by(most.recent.contributor.occupation) %>% 
