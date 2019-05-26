@@ -1,172 +1,230 @@
 ---
 title: "state-level-DIME"
-output: html_document
-code_folding: hide
+output: 
+  html_document:
+    code_folding: hide
 ---
-
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, 
-                      cache = F,
-                      #fig.ext = ".pdf",
-                      fig.align = 'center', fig.path='Figs/',
-                      warning=FALSE, message=FALSE)
-
-requires <- c("tidyverse", "readstata13")
-  to_install <- c(requires %in% rownames(installed.packages()) == FALSE)
-  install.packages(c(requires[to_install], "NA"), repos = "https://cloud.r-project.org/")
-  
-library(knitr)
+## Defaults for R chunks
+knitr::opts_chunk$set(echo = TRUE, ## echo = TRUE means code will show
+                      warning=FALSE, ## supress warnings and messages from R
+                      message=FALSE,
+                      fig.path='Figs/', ## where to save figures
+                      fig.height = 3, ## default figure size (can differ in each chunk)
+                      fig.width = 3)
+## Add any R packages you require. 
+## Here are some we will use in 811:
+requires <- c("tidyverse", ## tidyverse includes dplyr and ggplot2
+              "magrittr",
+              "here")
+## Install any you don't have
+to_install <- c(requires %in% rownames(installed.packages()) == FALSE)
+install.packages(c(requires[to_install], "NA"), repos = "https://cloud.r-project.org/" )
+## Load all required R packages
+library(tidyverse)
+library(ggplot2); theme_set(theme_minimal())
+library(magrittr)
+library(here)
 ```
 
-Adam Bonica's DIME data: 
-```{r data}
-library(readstata13)
-library(tidyverse)
-library(here)
 
-# Get Bonica's state level data
-load(here("data/BonicaStateLevel.Rdata"))
-## rename variables (Medians)
+## How much ideological diversity is there in U.S. state governments?
+
+Using DIME ideology scores (based on campaign donations).
+
+```{r DIME_data}
+## load data from a web address
+load("data/BonicaStateLevel.Rdata")
 d %<>%
+  ## naming things! 
   rename(Governor = gov_cf) %>% 
   rename(Lower = l_cf_median) %>% 
-  rename(Upper = u_cf_median)
+  rename(Upper = u_cf_median) %>%
+  mutate(state_ideology = ifelse(dist_1_x_zero == 0 & Governor < 0, "All Liberal", "Mixed")) %>% 
+  mutate(state_ideology = ifelse(dist_1_x_zero == 0 & Governor > 0, "All Conservative", state_ideology)) %>%
+  mutate(state_ideology = ifelse(is.na(dist_1_x_zero) & Governor > 0, "All Conservative", state_ideology)) %>%
+  ## identify min and max DIME scores for each state (each row is a state)
+  mutate(min = pmin(Governor, Lower, Upper, na.rm = T), 
+         max = pmax(Governor, Lower, Upper, na.rm = T) )
+
+
+## Legislator data only
+# http://www.ncsl.org/research/about-state-legislatures/partisan-composition.aspx
+# leg <- read_csv("data/legiscontrol_2002_2014.csv")
+# leg %<>% 
+#   gather(key = "year", value = "state_party", -State) %>%
+#   mutate(year = as.integer(year)) %>%
+#   mutate(state_party = state_party %>% 
+#            str_replace("Split", "Divided") %>% 
+#            str_replace("Dem", "Unified Democrat") %>% 
+#            str_replace("Rep", "Unified Republican")) %>% 
+#   left_join(tibble(State = state.name,
+#                        state = state.abb) )
+# 
+# d %<>% left_join(leg)
+
+# #https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/BSLEFD
+# library(haven)
+# shor <- read_dta("data/shor+mccarty+1993-2016+state+aggregate+data+May+2018+release+(Updated+July+2018).dta")
+
+#http://ippsr.msu.edu/public-policy/correlates-state-policy
+# http://ippsr.msu.edu/sites/default/files/CorrelatesCodebook.pdf
+csp <- read.csv("http://ippsr.msu.edu/sites/default/files/correlatesofstatepolicyprojectv2_1.csv") %>% 
+  mutate(state = as.character(st))
+
+# ranney4_control = 0 = unified Republican control, 1 = unified Democratic control, .5=neither.
+# names(csp)
+csp %<>% 
+  select(state, year, 
+         ranney4_control, 
+         govname1, govparty_a, 
+         ranney1_sen_dem_prop, ranney1_sen_dem_prop,
+         sen_dem_in_sess,
+         sen_rep_in_sess,
+         sen_ind_in_sess,
+         sen_tot_in_sess,
+         hs_dem_in_sess,
+         hs_rep_in_sess,
+         hs_ind_in_sess,
+         hs_tot_in_sess) %>%
+  distinct()  %>% 
+  mutate(state_party = ifelse(ranney4_control == 0, 
+                              "All Republican", 
+                              ifelse(ranney4_control == 1,
+                                     "All Democratic",
+                                     "Divided"))) %>% 
+  mutate(Leg_Composition = ifelse(hs_rep_in_sess > hs_tot_in_sess/2 & sen_rep_in_sess > sen_tot_in_sess/2, "R", "S")) %>% 
+  mutate(Leg_Composition = ifelse(hs_dem_in_sess > hs_tot_in_sess/2 & sen_dem_in_sess > sen_tot_in_sess/2, "D",Leg_Composition )) 
+
+csp %<>% 
+  rename(Gov_Name = govname1, Gov_Party = govparty_a)
+
+csp %<>% select(state, #statenum, 
+               year, Leg_Composition, Gov_Name,state_party) %>% 
+  distinct() %>% 
+  filter(year > 2000, year < 2017, state != "DC") %>% 
+  arrange(state, -year)
+
+write_csv(csp, path = "data/divided_government.csv")
+
+d %<>% left_join(csp)
+write_csv(d, path = "data/DIME+divided_government.csv")
+
 ```
 
+[Download Divided Government Data](https://raw.githubusercontent.com/judgelord/state-level-DIME/master/data/divided_government.csv)
 
-```{r bonica-1-does-NOT-cross-0, fig.height = 4, fig.width = 3.5, include=FALSE}
-# fig 1 - Political Principals All Democrats OR Republicans (dist_1_x_zero == 0)
-# states sorted by distance_1_gov_leg_med
-d %>% 
-  filter(dist_1_x_zero == 0) %>% 
-  mutate(party = ifelse(dist_1_x_zero == 0 & Governor<0, "All Democrats", "All Republicans")) %>% 
-  ggplot() +
-  geom_point(aes(x = Governor, y = reorder(state, distance_1_gov_leg_med)), shape = "G", color = "black") + 
-  geom_point(aes(x = Lower, y = reorder(state, distance_1_gov_leg_med)), shape = "L", color = "purple") + 
-  geom_point(aes(x = Upper, y = reorder(state, distance_1_gov_leg_med)), shape = "U", color = "orange") + 
-  labs(y = "", x = "", title = "Political Principals are All Democrats OR Republicans") + 
-  scale_x_continuous(breaks = c(-1, 0, 1)) + 
-  facet_grid(party ~ year, scales = "free_y", space = "free_y") + 
-  theme_minimal() + 
-  theme(axis.text.y = element_text(size = 5), title = element_text(size = 7)) 
+[Download DIME 2004 and 2014 sample merged with Divided Government Data](https://raw.githubusercontent.com/judgelord/state-level-DIME/master/data/DIME+divided_government.csv)
 
-ggsave("Figs/bonica-1-does-NOT-cross-0.pdf", height = 4, width = 3.5)
-```
+Source: Correlates of State Policy, [IPPSR.msu.edu](http://ippsr.msu.edu/public-policy/correlates-state-policy)
 
-```{r bonica-2-does-cross-0, fig.height = 3, fig.width = 3.5, include = FALSE}
-# fig 2 - Political Principals Include Democrats and Republicans
-d %>% 
-  filter(dist_1_x_zero == 1) %>% 
-  # mutate(party = "Divided Government") %>% 
-  ggplot() +
-  geom_point(aes(x = Governor, y = reorder(state, distance_1_gov_leg_med)), shape = "G", color = "black") + 
-  geom_point(aes(x = Lower, y = reorder(state, distance_1_gov_leg_med)), shape = "L", color = "purple") + 
-  geom_point(aes(x = Upper, y = reorder(state, distance_1_gov_leg_med)), shape = "U", color = "orange") + 
-  labs(y = "", x = "", title = "Political Principals Include Democrats & Republicans") + 
-  scale_x_continuous(breaks = c(-1, 0, 1)) + 
-  facet_grid(. ~ year, scales = "free_y", space = "free_y") + 
-  theme_minimal() + 
-  theme(axis.text.y = element_text(size = 5), title = element_text(size = 7)) 
+[Codebook](http://ippsr.msu.edu/sites/default/files/CorrelatesCodebook.pdf)
 
-ggsave("Figs/bonica-2-does-cross-0.pdf", height = 3, width = 3.5)
-```
+Variables: state, year, 
+         ranney4_control, 
+         govname1, govparty_a, 
+         ranney1_sen_dem_prop, ranney1_sen_dem_prop,
+         sen_dem_in_sess,
+         sen_rep_in_sess,
+         sen_ind_in_sess,
+         sen_tot_in_sess,
+         hs_dem_in_sess,
+         hs_rep_in_sess,
+         hs_ind_in_sess,
+         hs_tot_in_sess
 
 
-Comparing 2004 and 2008 scores for governor (G) and upper (U) and lower (L) chambers of state legislatures legislatures (sorted by ideological distance):
-```{r bonica-3-by-distance, fig.height = 5, fig.width = 3.5}
-# fig 2 - by distance
-d %>% 
-  ggplot() +
-  geom_point(aes(x = Governor, y = reorder(state, distance_1_gov_leg_med)), shape = "G", color = "black") + 
-  geom_point(aes(x = Lower, y = reorder(state, distance_1_gov_leg_med)), shape = "L", color = "purple") + 
-  geom_point(aes(x = Upper, y = reorder(state, distance_1_gov_leg_med)), shape = "U", color = "orange") + 
-  labs(y = "", x = "Ideology", title = "Political Principals") + 
-  scale_x_continuous(breaks = c(-1, 0, 1)) + 
-  facet_grid(. ~ year, scales = "free_y", space = "free_y") + 
-  theme_minimal() + 
-  theme(axis.text.y = element_text(size = 5), title = element_text(size = 7)) 
+# By DIME ideology score:
 
-ggsave("Figs/bonica-3-by-distance.pdf", height = 5, width = 3.5)
-```
-
-
-```{r bonica-4-alphabetical, fig.height = 5, fig.width = 2.5, include = FALSE}
-# fig 4 - alphabetical
-d %>% 
-  ggplot() +
-  geom_point(aes(x = Governor, y = state), shape = "G", color = "black") + 
-  geom_point(aes(x = Lower, y = state), shape = "L", color = "purple") + 
-  geom_point(aes(x = Upper, y = state), shape = "U", color = "orange") + 
-  labs(y = "", x = "Ideology", title = "Political Principals") + 
-  scale_x_continuous(breaks = c(-1, 0, 1)) + 
-  facet_grid(. ~ year) + 
-  theme_minimal() + 
-  theme(axis.text.y = element_text(size = 5), title = element_text(size = 7)) 
-
-ggsave("Figs/bonica-4-alphabetical.pdf", height = 5, width = 2.5)
-``` 
-
-2004 scores for governor (G) and upper (U) and lower (L) chambers of state legislatures legislatures:
-```{r bonica-5-all-2004, fig.height = 5, fig.width = 3.1}
-# fig 5 - All kinds Political Principals
-# states sorted by distance_1_gov_leg_med
-d %>% 
-  filter(year == 2004, state != "NH", state != "NE") %>%
-  mutate(party = ifelse(dist_1_x_zero == 0 & Governor < 0, "All Liberal", "Divided Government")) %>% 
-  mutate(party = ifelse(dist_1_x_zero == 0 & Governor > 0, "All Conservative", party)) %>%
-  mutate(party = ifelse(is.na(dist_1_x_zero) & Governor > 0, "All Conservative", party)) %>%
-  mutate(Lower = Lower - .0000001) %>% 
-  mutate(min = pmin(Governor, Lower, Upper), max = pmax(Governor, Lower, Upper) ) %>% 
+Which state governments are all conservative? Which are all liberal. Which are mixed? 
+```{r DIME_plot_function}
+## Define a function for plotting state-level DIME data with ggplot
+DIMEplot <- function(d){ 
+  d %>%
+    # define y as state for all layers
   ggplot(aes(y = reorder(state, distance_1_gov_leg_med))) +
-  geom_segment(aes(x = min, xend = max, yend = reorder(state, distance_1_gov_leg_med)), color = "grey", size = 2.1, lineend = "round", alpha = .3) + 
+    # x = lines for the distance between max and min actors
+  geom_segment(aes(x = min, 
+                   xend = max, 
+                   yend = reorder(state, distance_1_gov_leg_med)), 
+               color = "grey", 
+               size = 2.1, 
+               lineend = "round", 
+               alpha = .3) + 
+    # x = points for each actor
   geom_point(aes(x = Governor, color = Governor), shape = "G") + 
   geom_point(aes(x = Lower, color = Lower), shape = "L") + 
   geom_point(aes(x = Upper, color = Upper), shape = "U") + 
-  labs(y = "States by Preference Divergence", x = "Mean Ideology Score", title = "Preference Divergence of Political Principals, 2003", color = "") +
-  scale_x_continuous(breaks = c(-1, 0, 1)) + 
-  scale_colour_gradient2(low = "blue", mid = "black", high = "red") +
-  facet_grid(party ~ ., scales = "free_y", space = "free_y") + 
-  theme_minimal() + 
-  theme(axis.text.y = element_text(size = 5), title = element_text(size = 7), legend.position = "none") 
-
-ggsave("Figs/bonica-5-all-2004.pdf", height = 5, width = 3.1)
-``` 
-
-2008 scores for governor (G) and upper (U) and lower (L) chambers of state legislatures legislatures:
-```{r bonica-5-all-2008, fig.height = 5, fig.width = 3.1}
-# fig 5 - All kinds Political Principals
-# states sorted by distance_1_gov_leg_med
-
-d %>% 
-  filter(year == 2008, state != "NE") %>%
-  mutate(party = ifelse(dist_1_x_zero == 0 & Governor < 0, "All Liberal", "Divided Government")) %>% 
-  mutate(party = ifelse(dist_1_x_zero == 0 & Governor > 0, "All Conservative", party)) %>%
-  mutate(party = ifelse(is.na(dist_1_x_zero) & Governor > 0, "All Conservative", party)) %>%
-  mutate(min = pmin(Governor, Lower, Upper, na.rm = T), max = pmax(Governor, Lower, Upper, na.rm = T) ) %>% 
-  ggplot(aes(y = reorder(state, distance_1_gov_leg_med))) +
-  geom_segment(aes(x = min, xend = max, yend = reorder(state, distance_1_gov_leg_med)), color = "grey", size = 2.1, lineend = "round", alpha = .3) + 
-  geom_point(aes(x = Governor, color = Governor), shape = "G") + 
-  geom_point(aes(x = Lower, color = Lower), shape = "L") + 
-  geom_point(aes(x = Upper, color = Upper), shape = "U") + 
+    # labels 
   labs(y = "States by Preference Divergence", 
        x = "Mean Ideology Score", 
-       title = "Preference Divergence of Political Principals, 2007", 
-       color = "") +
+       title = paste("Preference Divergence of Political Principals,", unique(d$year) ), color = "") +
+    # scales
   scale_x_continuous(breaks = c(-1, 0, 1)) + 
   scale_colour_gradient2(low = "blue", mid = "black", high = "red") +
-  facet_grid(party ~ ., scales = "free_y", space = "free_y") + 
-  theme_minimal() + 
-  theme(axis.text.y = element_text(size = 5), title = element_text(size = 7), legend.position = "none") 
+    # facet by liberal, conservative, or mixed
+  facet_grid(state_ideology ~ ., scales = "free_y", space = "free_y") + 
+    # adjust text size and drop legend
+  theme(axis.text.y = element_text(size = 5), 
+        title = element_text(size = 7), 
+        legend.position = "none") 
+}
+```   
 
-ggsave("Figs/bonica-5-all-2008.pdf", height = 5, width = 3.1)
-```
+Alignment among governors (G) and upper (U) and lower (L) chambers of state legislatures in 2004 and 2008:
+```{r DIME-2003-2008-plots, fig.height = 5, fig.width = 3.1, fig.show='hold'}
+d %>% 
+  filter(year == 2004) %>% 
+  DIMEplot()
+d %>% 
+  filter(year == 2008) %>%
+  DIMEplot()
+```     
 
+# By party control and ideology score:
 
-```{r pdf1, fig.cap = "", include = FALSE}
-# knitr::include_graphics("bonica-1-does-NOT-cross-0.pdf")
-```
+Which state governments are all democrat? Which are all republican? Which are mixed? 
+```{r DIME-party_plot_function}
+## Define a function for plotting state-level DIME data with ggplot
+DIMEplot <- function(d){ 
+  d %>%
+    # define y as state for all layers
+  ggplot(aes(y = reorder(state, distance_1_gov_leg_med))) +
+    # x = lines for the distance between max and min actors
+  geom_segment(aes(x = min, 
+                   xend = max, 
+                   yend = reorder(state, distance_1_gov_leg_med)), 
+               color = "grey", 
+               size = 2.1, 
+               lineend = "round", 
+               alpha = .3) + 
+    # x = points for each actor
+  geom_point(aes(x = Governor, color = Governor), shape = "G") + 
+  geom_point(aes(x = Lower, color = Lower), shape = "L") + 
+  geom_point(aes(x = Upper, color = Upper), shape = "U") + 
+    # labels 
+  labs(y = "States by Preference Divergence", 
+       x = "Mean Ideology Score", 
+       title = paste("Preference Divergence of Political Principals,", unique(d$year) ), color = "") +
+    # scales
+  scale_x_continuous(breaks = c(-1, 0, 1)) + 
+  scale_colour_gradient2(low = "blue", mid = "black", high = "red") +
+    # facet by liberal, conservative, or mixed
+  facet_grid(state_party ~ ., scales = "free_y", space = "free_y") + 
+    # adjust text size and drop legend
+  theme(axis.text.y = element_text(size = 5), 
+        title = element_text(size = 7), 
+        legend.position = "none") 
+}
+```   
 
-```{r pdf2, fig.cap = "", include = FALSE}
-#knitr::include_graphics("bonica-2-does-cross-0.pdf")
+Alignment among governors (G) and upper (U) and lower (L) chambers of state legislatures in 2004 and 2008:
+```{r DIME-party-2003-2008-plots, fig.height = 5, fig.width = 3.1, fig.show='hold'}
+d %>% 
+  filter(year == 2004) %>% 
+  DIMEplot()
+d %>% 
+  filter(year == 2008) %>%
+  DIMEplot()
+```     
 
-```
