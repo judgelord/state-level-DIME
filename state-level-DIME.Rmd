@@ -77,7 +77,7 @@ csp <- read.csv("http://ippsr.msu.edu/sites/default/files/correlatesofstatepolic
 csp %<>% 
   select(state, year, 
          ranney4_control, 
-         govname1, govparty_a, 
+         govname1, govparty_a, #govparty_b,
          ranney1_sen_dem_prop, ranney1_sen_dem_prop,
          sen_dem_in_sess,
          sen_rep_in_sess,
@@ -93,14 +93,19 @@ csp %<>%
                               ifelse(ranney4_control == 1,
                                      "All Democratic",
                                      "Divided"))) %>% 
+  mutate(Gov_Party = ifelse(govparty_a == 0, 
+                              "R", 
+                              ifelse(govparty_a == 1,
+                                     "D",
+                                     "Other"))) %>%
   mutate(Leg_Composition = ifelse(hs_rep_in_sess > hs_tot_in_sess/2 & sen_rep_in_sess > sen_tot_in_sess/2, "R", "S")) %>% 
   mutate(Leg_Composition = ifelse(hs_dem_in_sess > hs_tot_in_sess/2 & sen_dem_in_sess > sen_tot_in_sess/2, "D",Leg_Composition )) 
 
 csp %<>% 
-  rename(Gov_Name = govname1, Gov_Party = govparty_a)
-
+  rename(Gov_Name = govname1)
 csp %<>% select(state, #statenum, 
-               year, Leg_Composition, Gov_Name,state_party) %>% 
+               year, Leg_Composition, Gov_Name, Gov_Party, #Gov_Party2,
+               state_party) %>% 
   distinct() %>% 
   filter(year > 2000, year < 2017, state != "DC") %>% 
   arrange(state, -year)
@@ -121,9 +126,8 @@ Source: Correlates of State Policy, [IPPSR.msu.edu](http://ippsr.msu.edu/public-
 [Codebook](http://ippsr.msu.edu/sites/default/files/CorrelatesCodebook.pdf)
 
 Variables: state, year, 
-         ranney4_control, 
-         govname1, govparty_a, 
-         ranney1_sen_dem_prop, ranney1_sen_dem_prop,
+         ranney4_control, ranney1_sen_dem_prop, ranney1_sen_dem_prop,
+         govname1, govparty_a, govparty_b,
          sen_dem_in_sess,
          sen_rep_in_sess,
          sen_ind_in_sess,

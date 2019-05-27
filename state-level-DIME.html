@@ -252,7 +252,7 @@ csp &lt;- read.csv(&quot;http://ippsr.msu.edu/sites/default/files/correlatesofst
 csp %&lt;&gt;% 
   select(state, year, 
          ranney4_control, 
-         govname1, govparty_a, 
+         govname1, govparty_a, #govparty_b,
          ranney1_sen_dem_prop, ranney1_sen_dem_prop,
          sen_dem_in_sess,
          sen_rep_in_sess,
@@ -268,14 +268,19 @@ csp %&lt;&gt;%
                               ifelse(ranney4_control == 1,
                                      &quot;All Democratic&quot;,
                                      &quot;Divided&quot;))) %&gt;% 
+  mutate(Gov_Party = ifelse(govparty_a == 0, 
+                              &quot;R&quot;, 
+                              ifelse(govparty_a == 1,
+                                     &quot;D&quot;,
+                                     &quot;Other&quot;))) %&gt;%
   mutate(Leg_Composition = ifelse(hs_rep_in_sess &gt; hs_tot_in_sess/2 &amp; sen_rep_in_sess &gt; sen_tot_in_sess/2, &quot;R&quot;, &quot;S&quot;)) %&gt;% 
   mutate(Leg_Composition = ifelse(hs_dem_in_sess &gt; hs_tot_in_sess/2 &amp; sen_dem_in_sess &gt; sen_tot_in_sess/2, &quot;D&quot;,Leg_Composition )) 
 
 csp %&lt;&gt;% 
-  rename(Gov_Name = govname1, Gov_Party = govparty_a)
-
+  rename(Gov_Name = govname1)
 csp %&lt;&gt;% select(state, #statenum, 
-               year, Leg_Composition, Gov_Name,state_party) %&gt;% 
+               year, Leg_Composition, Gov_Name, Gov_Party, #Gov_Party2,
+               state_party) %&gt;% 
   distinct() %&gt;% 
   filter(year &gt; 2000, year &lt; 2017, state != &quot;DC&quot;) %&gt;% 
   arrange(state, -year)
@@ -288,7 +293,7 @@ write_csv(d, path = &quot;data/DIME+divided_government.csv&quot;)</code></pre>
 <p><a href="https://raw.githubusercontent.com/judgelord/state-level-DIME/master/data/DIME+divided_government.csv">Download DIME 2004 and 2014 sample merged with Divided Government Data</a></p>
 <p>Source: Correlates of State Policy, <a href="http://ippsr.msu.edu/public-policy/correlates-state-policy">IPPSR.msu.edu</a></p>
 <p><a href="http://ippsr.msu.edu/sites/default/files/CorrelatesCodebook.pdf">Codebook</a></p>
-<p>Variables: state, year, ranney4_control, govname1, govparty_a, ranney1_sen_dem_prop, ranney1_sen_dem_prop, sen_dem_in_sess, sen_rep_in_sess, sen_ind_in_sess, sen_tot_in_sess, hs_dem_in_sess, hs_rep_in_sess, hs_ind_in_sess, hs_tot_in_sess</p>
+<p>Variables: state, year, ranney4_control, ranney1_sen_dem_prop, ranney1_sen_dem_prop, govname1, govparty_a, govparty_b, sen_dem_in_sess, sen_rep_in_sess, sen_ind_in_sess, sen_tot_in_sess, hs_dem_in_sess, hs_rep_in_sess, hs_ind_in_sess, hs_tot_in_sess</p>
 </div>
 <div id="by-dime-ideology-score" class="section level1">
 <h1>By DIME ideology score:</h1>
