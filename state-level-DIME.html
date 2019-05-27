@@ -286,9 +286,9 @@ csp %&lt;&gt;% select(state, #statenum,
   arrange(state, -year)
 
 csp %&lt;&gt;% 
-  mutate(state_party = ifelse(Leg_Composition == &quot;R&quot; &amp; Gov_Party == &quot;R&quot;, &quot;All Republican&quot;, state_party)) %&gt;% 
-  mutate(state_party = ifelse(Leg_Composition == &quot;D&quot; &amp; Gov_Party == &quot;D&quot;, &quot;All Democrat&quot;, state_party)) %&gt;% 
-  mutate(state_party = ifelse(Leg_Composition != Gov_Party, &quot;Divided&quot;, state_party))
+  mutate(state_party = ifelse(!is.na(Leg_Composition) &amp; Leg_Composition == &quot;R&quot; &amp; Gov_Party == &quot;R&quot;, &quot;All Republican&quot;, state_party)) %&gt;% 
+  mutate(state_party = ifelse(!is.na(Leg_Composition) &amp; Leg_Composition == &quot;D&quot; &amp; Gov_Party == &quot;D&quot;, &quot;All Democrat&quot;, state_party)) %&gt;% 
+  mutate(state_party = ifelse(!is.na(Leg_Composition) &amp; Leg_Composition != Gov_Party, &quot;Divided&quot;, state_party))
 
 write_csv(csp, path = &quot;data/divided_government.csv&quot;)
 
