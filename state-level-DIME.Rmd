@@ -110,6 +110,11 @@ csp %<>% select(state, #statenum,
   filter(year > 2000, year < 2017, state != "DC") %>% 
   arrange(state, -year)
 
+csp %<>% 
+  mutate(state_party = ifelse(Leg_Composition == "R" & Gov_Party == "R", "All Republican", state_party)) %>% 
+  mutate(state_party = ifelse(Leg_Composition == "D" & Gov_Party == "D", "All Democrat", state_party)) %>% 
+  mutate(state_party = ifelse(Leg_Composition != Gov_Party, "Divided", state_party))
+
 write_csv(csp, path = "data/divided_government.csv")
 
 d %<>% left_join(csp)
