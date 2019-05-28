@@ -34,8 +34,11 @@ Using DIME ideology scores (based on campaign donations).
 
 ```{r DIME_data}
 ## load data from a web address
+
 load("data/BonicaStateLevel.Rdata")
+
 d %<>%
+  mutate(year = year -1) %>%
   ## naming things! 
   rename(Governor = gov_cf) %>% 
   rename(Lower = l_cf_median) %>% 
@@ -110,10 +113,17 @@ csp %<>% select(state, #statenum,
   filter(year > 2000, year < 2017, state != "DC") %>% 
   arrange(state, -year)
 
-csp %<>% 
-  mutate(state_party = ifelse(!is.na(Leg_Composition) & Leg_Composition == "R" & Gov_Party == "R", "All Republican", state_party)) %>% 
-  mutate(state_party = ifelse(!is.na(Leg_Composition) & Leg_Composition == "D" & Gov_Party == "D", "All Democrat", state_party)) %>% 
+#IF WE WANT TO GO WITH LEG CODING THAT CALLS YEARS WHERE POWER TRANSITIONED "SPLIT" (E.G. MS in 2007)
+csp %<>%
+  mutate(state_party = ifelse(!is.na(Leg_Composition) & Leg_Composition == "R" & Gov_Party == "R", "All Republican", state_party)) %>%
+  mutate(state_party = ifelse(!is.na(Leg_Composition) & Leg_Composition == "D" & Gov_Party == "D", "All Democrat", state_party)) %>%
   mutate(state_party = ifelse(!is.na(Leg_Composition) & Leg_Composition != Gov_Party, "Divided", state_party))
+
+csp %<>%
+  mutate(Leg_Composition = ifelse(state_party == "All Democratic", "D", Leg_Composition)) %>% 
+  mutate(Leg_Composition = ifelse(state_party == "All Republican", "R", Leg_Composition)) %>% 
+  mutate(Gov_Party = ifelse(state_party == "All Democratic", "D", Gov_Party)) %>% 
+  mutate(Gov_Party = ifelse(state_party == "All Republican", "R", Gov_Party))
 
 write_csv(csp, path = "data/divided_government.csv")
 
@@ -124,7 +134,7 @@ write_csv(d, path = "data/DIME+divided_government.csv")
 
 [Download Divided Government Data](https://raw.githubusercontent.com/judgelord/state-level-DIME/master/data/divided_government.csv)
 
-[Download DIME 2004 and 2014 sample merged with Divided Government Data](https://raw.githubusercontent.com/judgelord/state-level-DIME/master/data/DIME+divided_government.csv)
+[Download DIME 2003 and 2007 sample merged with Divided Government Data](https://raw.githubusercontent.com/judgelord/state-level-DIME/master/data/DIME+divided_government.csv)
 
 Source: Correlates of State Policy, [IPPSR.msu.edu](http://ippsr.msu.edu/public-policy/correlates-state-policy)
 
@@ -145,7 +155,7 @@ Variables: state, year,
 
 # By DIME ideology score:
 
-Which state governments are all conservative? Which are all liberal. Which are mixed? 
+Which state governments are all conservative? Which are all liberal? Which are mixed? 
 ```{r DIME_plot_function}
 ## Define a function for plotting state-level DIME data with ggplot
 DIMEplot <- function(d){ 
@@ -180,13 +190,13 @@ DIMEplot <- function(d){
 }
 ```   
 
-Alignment among governors (G) and upper (U) and lower (L) chambers of state legislatures in 2004 and 2008:
-```{r DIME-2003-2008-plots, fig.height = 5, fig.width = 3.1, fig.show='hold'}
+Alignment among governors (G) and upper (U) and lower (L) chambers of state legislatures in 2003 and 2007:
+```{r DIME-2003-2007-plots, fig.height = 5, fig.width = 3.1, fig.show='hold'}
 d %>% 
-  filter(year == 2004) %>% 
+  filter(year == 2003) %>% 
   DIMEplot()
 d %>% 
-  filter(year == 2008) %>%
+  filter(year == 2007) %>%
   DIMEplot()
 ```     
 
@@ -227,13 +237,13 @@ DIMEplot <- function(d){
 }
 ```   
 
-Alignment among governors (G) and upper (U) and lower (L) chambers of state legislatures in 2004 and 2008:
-```{r DIME-party-2003-2008-plots, fig.height = 5, fig.width = 3.1, fig.show='hold'}
+Alignment among governors (G) and upper (U) and lower (L) chambers of state legislatures in 2003 and 2007:
+```{r DIME-party-2003-2007-plots, fig.height = 6, fig.width = 3.1, fig.show='hold'}
 d %>% 
-  filter(year == 2004) %>% 
+  filter(year == 2003) %>% 
   DIMEplot()
 d %>% 
-  filter(year == 2008) %>%
+  filter(year == 2007) %>%
   DIMEplot()
 ```     
 

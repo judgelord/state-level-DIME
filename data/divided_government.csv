@@ -1,8 +1,8 @@
 state,year,Leg_Composition,Gov_Name,Gov_Party,state_party
 AK,2016,NA,,NA,Divided
 AK,2015,NA,,NA,Divided
-AK,2014,NA,,NA,All Republican
-AK,2013,NA,,NA,All Republican
+AK,2014,R,,R,All Republican
+AK,2013,R,,R,All Republican
 AK,2012,NA,,NA,Divided
 AK,2011,S,Parnell Sean,R,Divided
 AK,2010,S,Parnell Sean,R,Divided
@@ -15,11 +15,11 @@ AK,2004,R,Murkowski Frank H.,R,All Republican
 AK,2003,R,Murkowski Frank H.,R,All Republican
 AK,2002,R,Knowles Tony,D,Divided
 AK,2001,R,Knowles Tony,D,Divided
-AL,2016,NA,,NA,All Republican
-AL,2015,NA,,NA,All Republican
-AL,2014,NA,,NA,All Republican
-AL,2013,NA,,NA,All Republican
-AL,2012,NA,,NA,All Republican
+AL,2016,R,,R,All Republican
+AL,2015,R,,R,All Republican
+AL,2014,R,,R,All Republican
+AL,2013,R,,R,All Republican
+AL,2012,R,,R,All Republican
 AL,2011,R,Bentley Robert,R,All Republican
 AL,2010,D,Riley Bob,R,Divided
 AL,2009,D,Riley Bob,R,Divided
@@ -31,11 +31,11 @@ AL,2004,D,Riley Bob,R,Divided
 AL,2003,D,Riley Bob,R,Divided
 AL,2002,D,Siegelman Donald,D,All Democrat
 AL,2001,D,Siegelman Donald,D,All Democrat
-AR,2016,NA,,NA,All Republican
-AR,2015,NA,,NA,All Republican
+AR,2016,R,,R,All Republican
+AR,2015,R,,R,All Republican
 AR,2014,NA,,NA,Divided
 AR,2013,NA,,NA,Divided
-AR,2012,NA,,NA,All Democratic
+AR,2012,D,,D,All Democratic
 AR,2011,D,Beebe Mike,D,All Democrat
 AR,2010,D,Beebe Mike,D,All Democrat
 AR,2009,D,Beebe Mike,D,All Democrat
@@ -47,11 +47,11 @@ AR,2004,D,Huckabee Mike,R,Divided
 AR,2003,D,Huckabee Mike,R,Divided
 AR,2002,D,Huckabee Mike,R,Divided
 AR,2001,D,Huckabee Mike,R,Divided
-AZ,2016,NA,,NA,All Republican
-AZ,2015,NA,,NA,All Republican
-AZ,2014,NA,,NA,All Republican
-AZ,2013,NA,,NA,All Republican
-AZ,2012,NA,,NA,All Republican
+AZ,2016,R,,R,All Republican
+AZ,2015,R,,R,All Republican
+AZ,2014,R,,R,All Republican
+AZ,2013,R,,R,All Republican
+AZ,2012,R,,R,All Republican
 AZ,2011,R,Brewer Jan,R,All Republican
 AZ,2010,R,Brewer Jan,R,All Republican
 AZ,2009,R,Brewer Jan,R,All Republican
@@ -63,11 +63,11 @@ AZ,2004,R,Napolitano Janet,D,Divided
 AZ,2003,R,Napolitano Janet,D,Divided
 AZ,2002,S,Hull Jane,R,Divided
 AZ,2001,S,Hull Jane,R,Divided
-CA,2016,NA,,NA,All Democratic
-CA,2015,NA,,NA,All Democratic
-CA,2014,NA,,NA,All Democratic
-CA,2013,NA,,NA,All Democratic
-CA,2012,NA,,NA,All Democratic
+CA,2016,D,,D,All Democratic
+CA,2015,D,,D,All Democratic
+CA,2014,D,,D,All Democratic
+CA,2013,D,,D,All Democratic
+CA,2012,D,,D,All Democratic
 CA,2011,D,Brown Edmund Gerald,D,All Democrat
 CA,2010,D,Schwarzenegger Arnold,R,Divided
 CA,2009,D,Schwarzenegger Arnold,R,Divided
@@ -81,8 +81,8 @@ CA,2002,D,Davis Gray,D,All Democrat
 CA,2001,D,Davis Gray,D,All Democrat
 CO,2016,NA,,NA,Divided
 CO,2015,NA,,NA,Divided
-CO,2014,NA,,NA,All Democratic
-CO,2013,NA,,NA,All Democratic
+CO,2014,D,,D,All Democratic
+CO,2013,D,,D,All Democratic
 CO,2012,NA,,NA,Divided
 CO,2011,S,Hickenlooper John,D,Divided
 CO,2010,D,Ritter Bill,D,All Democrat
@@ -95,11 +95,11 @@ CO,2004,R,Owens Bill,R,All Republican
 CO,2003,R,Owens Bill,R,All Republican
 CO,2002,S,Owens Bill,R,Divided
 CO,2001,S,Owens Bill,R,Divided
-CT,2016,NA,,NA,All Democratic
-CT,2015,NA,,NA,All Democratic
-CT,2014,NA,,NA,All Democratic
-CT,2013,NA,,NA,All Democratic
-CT,2012,NA,,NA,All Democratic
+CT,2016,D,,D,All Democratic
+CT,2015,D,,D,All Democratic
+CT,2014,D,,D,All Democratic
+CT,2013,D,,D,All Democratic
+CT,2012,D,,D,All Democratic
 CT,2011,D,Malloy Dan,D,All Democrat
 CT,2010,D,Rell M. Jodi,R,Divided
 CT,2009,D,Rell M. Jodi,R,Divided
@@ -111,11 +111,11 @@ CT,2004,D,Rell M. Jodi,R,Divided
 CT,2003,D,Rowland John G. ,R,Divided
 CT,2002,D,Rowland John G. ,R,Divided
 CT,2001,D,Rowland John G. ,R,Divided
-DE,2016,NA,,NA,All Democratic
-DE,2015,NA,,NA,All Democratic
-DE,2014,NA,,NA,All Democratic
-DE,2013,NA,,NA,All Democratic
-DE,2012,NA,,NA,All Democratic
+DE,2016,D,,D,All Democratic
+DE,2015,D,,D,All Democratic
+DE,2014,D,,D,All Democratic
+DE,2013,D,,D,All Democratic
+DE,2012,D,,D,All Democratic
 DE,2011,D,Markell Jack,D,All Democrat
 DE,2010,D,Markell Jack,D,All Democrat
 DE,2009,D,Markell Jack,D,All Democrat
@@ -127,11 +127,11 @@ DE,2004,S,Minner Ruth Ann,D,Divided
 DE,2003,S,Minner Ruth Ann,D,Divided
 DE,2002,S,Minner Ruth Ann,D,Divided
 DE,2001,S,Minner Ruth Ann,D,Divided
-FL,2016,NA,,NA,All Republican
-FL,2015,NA,,NA,All Republican
-FL,2014,NA,,NA,All Republican
-FL,2013,NA,,NA,All Republican
-FL,2012,NA,,NA,All Republican
+FL,2016,R,,R,All Republican
+FL,2015,R,,R,All Republican
+FL,2014,R,,R,All Republican
+FL,2013,R,,R,All Republican
+FL,2012,R,,R,All Republican
 FL,2011,R,Scott Rick,R,All Republican
 FL,2010,R,Crist Charlie,R,All Republican
 FL,2009,R,Crist Charlie,R,All Republican
@@ -143,11 +143,11 @@ FL,2004,R,Bush Jeb,R,All Republican
 FL,2003,R,Bush Jeb,R,All Republican
 FL,2002,R,Bush Jeb,R,All Republican
 FL,2001,R,Bush Jeb,R,All Republican
-GA,2016,NA,,NA,All Republican
-GA,2015,NA,,NA,All Republican
-GA,2014,NA,,NA,All Republican
-GA,2013,NA,,NA,All Republican
-GA,2012,NA,,NA,All Republican
+GA,2016,R,,R,All Republican
+GA,2015,R,,R,All Republican
+GA,2014,R,,R,All Republican
+GA,2013,R,,R,All Republican
+GA,2012,R,,R,All Republican
 GA,2011,R,Deal Nathan,R,All Republican
 GA,2010,R,Perdue Sonny,R,All Republican
 GA,2009,R,Perdue Sonny,R,All Republican
@@ -159,11 +159,11 @@ GA,2004,S,Perdue Sonny,R,Divided
 GA,2003,S,Perdue Sonny,R,Divided
 GA,2002,D,Barnes Roy,D,All Democrat
 GA,2001,D,Barnes Roy,D,All Democrat
-HI,2016,NA,,NA,All Democratic
-HI,2015,NA,,NA,All Democratic
-HI,2014,NA,,NA,All Democratic
-HI,2013,NA,,NA,All Democratic
-HI,2012,NA,,NA,All Democratic
+HI,2016,D,,D,All Democratic
+HI,2015,D,,D,All Democratic
+HI,2014,D,,D,All Democratic
+HI,2013,D,,D,All Democratic
+HI,2012,D,,D,All Democratic
 HI,2011,D,Abercrombie Neil,D,All Democrat
 HI,2010,D,Lingle Linda,R,Divided
 HI,2009,D,Lingle Linda,R,Divided
@@ -191,11 +191,11 @@ IA,2004,R,Vilsack Tom,D,Divided
 IA,2003,R,Vilsack Tom,D,Divided
 IA,2002,R,Vilsack Tom,D,Divided
 IA,2001,R,Vilsack Tom,D,Divided
-ID,2016,NA,,NA,All Republican
-ID,2015,NA,,NA,All Republican
-ID,2014,NA,,NA,All Republican
-ID,2013,NA,,NA,All Republican
-ID,2012,NA,,NA,All Republican
+ID,2016,R,,R,All Republican
+ID,2015,R,,R,All Republican
+ID,2014,R,,R,All Republican
+ID,2013,R,,R,All Republican
+ID,2012,R,,R,All Republican
 ID,2011,R,"Otter C. L. Butch""",R,All Republican
 ID,2010,R,"Otter C. L. Butch""",R,All Republican
 ID,2009,R,"Otter C. L. Butch""",R,All Republican
@@ -209,9 +209,9 @@ ID,2002,R,Kempthorne Dirk,R,All Republican
 ID,2001,R,Kempthorne Dirk,R,All Republican
 IL,2016,NA,,NA,Divided
 IL,2015,NA,,NA,Divided
-IL,2014,NA,,NA,All Democratic
-IL,2013,NA,,NA,All Democratic
-IL,2012,NA,,NA,All Democratic
+IL,2014,D,,D,All Democratic
+IL,2013,D,,D,All Democratic
+IL,2012,D,,D,All Democratic
 IL,2011,D,Quinn Patrick,D,All Democrat
 IL,2010,D,Quinn Patrick,D,All Democrat
 IL,2009,D,Quinn Patrick,D,All Democrat
@@ -223,11 +223,11 @@ IL,2004,D,Blagojevich Rod R.,D,All Democrat
 IL,2003,D,Blagojevich Rod R.,D,All Democrat
 IL,2002,S,Ryan George,R,Divided
 IL,2001,S,Ryan George,R,Divided
-IN,2016,NA,,NA,All Republican
-IN,2015,NA,,NA,All Republican
-IN,2014,NA,,NA,All Republican
-IN,2013,NA,,NA,All Republican
-IN,2012,NA,,NA,All Republican
+IN,2016,R,,R,All Republican
+IN,2015,R,,R,All Republican
+IN,2014,R,,R,All Republican
+IN,2013,R,,R,All Republican
+IN,2012,R,,R,All Republican
 IN,2011,R,Daniels Mitch,R,All Republican
 IN,2010,S,Daniels Mitch,R,Divided
 IN,2009,S,Daniels Mitch,R,Divided
@@ -239,11 +239,11 @@ IN,2004,S,Kernan Joseph E.,D,Divided
 IN,2003,S,Split: Frank L. O'Bannon-D and Joseph E. Kernan-D,D,Divided
 IN,2002,S,O'Bannon Frank L.,D,Divided
 IN,2001,S,O'Bannon Frank L.,D,Divided
-KS,2016,NA,,NA,All Republican
-KS,2015,NA,,NA,All Republican
-KS,2014,NA,,NA,All Republican
-KS,2013,NA,,NA,All Republican
-KS,2012,NA,,NA,All Republican
+KS,2016,R,,R,All Republican
+KS,2015,R,,R,All Republican
+KS,2014,R,,R,All Republican
+KS,2013,R,,R,All Republican
+KS,2012,R,,R,All Republican
 KS,2011,R,Brownback Sam,R,All Republican
 KS,2010,R,Parkinson Mark,D,Divided
 KS,2009,R,Parkinson Mark,D,Divided
@@ -271,11 +271,11 @@ KY,2004,S,Fletcher Ernie,R,Divided
 KY,2003,S,Patton Paul E.,D,Divided
 KY,2002,S,Patton Paul E.,D,Divided
 KY,2001,S,Patton Paul E.,D,Divided
-LA,2016,NA,,NA,All Republican
-LA,2015,NA,,NA,All Republican
-LA,2014,NA,,NA,All Republican
-LA,2013,NA,,NA,All Republican
-LA,2012,NA,,NA,All Republican
+LA,2016,R,,R,All Republican
+LA,2015,R,,R,All Republican
+LA,2014,R,,R,All Republican
+LA,2013,R,,R,All Republican
+LA,2012,R,,R,All Republican
 LA,2011,S,Jindal Bobby,R,Divided
 LA,2010,S,Jindal Bobby,R,Divided
 LA,2009,S,Jindal Bobby,R,Divided
@@ -289,9 +289,9 @@ LA,2002,D,Foster Mike,R,Divided
 LA,2001,D,Foster Mike,R,Divided
 MA,2016,NA,,NA,Divided
 MA,2015,NA,,NA,Divided
-MA,2014,NA,,NA,All Democratic
-MA,2013,NA,,NA,All Democratic
-MA,2012,NA,,NA,All Democratic
+MA,2014,D,,D,All Democratic
+MA,2013,D,,D,All Democratic
+MA,2012,D,,D,All Democratic
 MA,2011,D,Patrick Deval L.,D,All Democrat
 MA,2010,D,Patrick Deval L.,D,All Democrat
 MA,2009,D,Patrick Deval L.,D,All Democrat
@@ -305,9 +305,9 @@ MA,2002,D,Swift Jane,R,Divided
 MA,2001,D,Switch; Paul Cellucci then Swift,R,Divided
 MD,2016,NA,,NA,Divided
 MD,2015,NA,,NA,Divided
-MD,2014,NA,,NA,All Democratic
-MD,2013,NA,,NA,All Democratic
-MD,2012,NA,,NA,All Democratic
+MD,2014,D,,D,All Democratic
+MD,2013,D,,D,All Democratic
+MD,2012,D,,D,All Democratic
 MD,2011,D,O'Malley Martin,D,All Democrat
 MD,2010,D,O'Malley Martin,D,All Democrat
 MD,2009,D,O'Malley Martin,D,All Democrat
@@ -323,7 +323,7 @@ ME,2016,NA,,NA,Divided
 ME,2015,NA,,NA,Divided
 ME,2014,NA,,NA,Divided
 ME,2013,NA,,NA,Divided
-ME,2012,NA,,NA,All Republican
+ME,2012,R,,R,All Republican
 ME,2011,R,LePage Paul,R,All Republican
 ME,2010,D,Baldacci John,D,All Democrat
 ME,2009,D,Baldacci John,D,All Democrat
@@ -335,11 +335,11 @@ ME,2004,D,Baldacci John,D,All Democrat
 ME,2003,D,Baldacci John,D,All Democrat
 ME,2002,D,King Angus Jr.,Other,Divided
 ME,2001,S,King Angus Jr.,Other,Divided
-MI,2016,NA,,NA,All Republican
-MI,2015,NA,,NA,All Republican
-MI,2014,NA,,NA,All Republican
-MI,2013,NA,,NA,All Republican
-MI,2012,NA,,NA,All Republican
+MI,2016,R,,R,All Republican
+MI,2015,R,,R,All Republican
+MI,2014,R,,R,All Republican
+MI,2013,R,,R,All Republican
+MI,2012,R,,R,All Republican
 MI,2011,R,Snyder Rick,R,All Republican
 MI,2010,S,Granholm Jennifer,D,Divided
 MI,2009,S,Granholm Jennifer,D,Divided
@@ -353,8 +353,8 @@ MI,2002,R,Engler John,R,All Republican
 MI,2001,R,Engler John,R,All Republican
 MN,2016,NA,,NA,Divided
 MN,2015,NA,,NA,Divided
-MN,2014,NA,,NA,All Democratic
-MN,2013,NA,,NA,All Democratic
+MN,2014,D,,D,All Democratic
+MN,2013,D,,D,All Democratic
 MN,2012,NA,,NA,Divided
 MN,2011,R,Dayton Mark,D,Divided
 MN,2010,D,Pawlenty Tim,R,Divided
@@ -383,11 +383,11 @@ MO,2004,R,Holden Bob,D,Divided
 MO,2003,R,Holden Bob,D,Divided
 MO,2002,S,Holden Bob,D,Divided
 MO,2001,S,Holden Bob,D,Divided
-MS,2016,NA,,NA,All Republican
-MS,2015,NA,,NA,All Republican
-MS,2014,NA,,NA,All Republican
-MS,2013,NA,,NA,All Republican
-MS,2012,NA,,NA,All Republican
+MS,2016,R,,R,All Republican
+MS,2015,R,,R,All Republican
+MS,2014,R,,R,All Republican
+MS,2013,R,,R,All Republican
+MS,2012,R,,R,All Republican
 MS,2011,S,Barbour Haley,R,Divided
 MS,2010,S,Barbour Haley,R,Divided
 MS,2009,D,Barbour Haley,R,Divided
@@ -415,10 +415,10 @@ MT,2004,R,Martz Judy,R,All Republican
 MT,2003,R,Martz Judy,R,All Republican
 MT,2002,R,Martz Judy,R,All Republican
 MT,2001,R,Martz Judy,R,All Republican
-NC,2016,NA,,NA,All Republican
-NC,2015,NA,,NA,All Republican
-NC,2014,NA,,NA,All Republican
-NC,2013,NA,,NA,All Republican
+NC,2016,R,,R,All Republican
+NC,2015,R,,R,All Republican
+NC,2014,R,,R,All Republican
+NC,2013,R,,R,All Republican
 NC,2012,NA,,NA,Divided
 NC,2011,R,Perdue Beverly,D,Divided
 NC,2010,D,Perdue Beverly,D,All Democrat
@@ -431,11 +431,11 @@ NC,2004,D,Easley Michael F.,D,All Democrat
 NC,2003,S,Easley Michael F.,D,Divided
 NC,2002,D,Easley Michael F.,D,All Democrat
 NC,2001,D,Easley Michael F.,D,All Democrat
-ND,2016,NA,,NA,All Republican
-ND,2015,NA,,NA,All Republican
-ND,2014,NA,,NA,All Republican
-ND,2013,NA,,NA,All Republican
-ND,2012,NA,,NA,All Republican
+ND,2016,R,,R,All Republican
+ND,2015,R,,R,All Republican
+ND,2014,R,,R,All Republican
+ND,2013,R,,R,All Republican
+ND,2012,R,,R,All Republican
 ND,2011,R,Dalrymple Jack,R,All Republican
 ND,2010,R,Hoeven John,R,All Republican
 ND,2009,R,Hoeven John,R,All Republican
@@ -452,17 +452,17 @@ NE,2015,NA,,NA,NA
 NE,2014,NA,,NA,NA
 NE,2013,NA,,NA,NA
 NE,2012,NA,,NA,NA
-NE,2011,NA,Heineman Dave,R,NA
-NE,2010,NA,Heineman Dave,R,NA
-NE,2009,NA,Heineman Dave,R,NA
-NE,2008,NA,Heineman Dave,R,NA
-NE,2007,NA,Heineman Dave,R,NA
-NE,2006,NA,Heineman Dave,R,NA
-NE,2005,NA,Heineman Dave,R,NA
-NE,2004,NA,Johanns Mike,R,NA
-NE,2003,NA,Johanns Mike,R,NA
-NE,2002,NA,Johanns Mike,R,NA
-NE,2001,NA,Johanns Mike,R,NA
+NE,2011,NA,Heineman Dave,NA,NA
+NE,2010,NA,Heineman Dave,NA,NA
+NE,2009,NA,Heineman Dave,NA,NA
+NE,2008,NA,Heineman Dave,NA,NA
+NE,2007,NA,Heineman Dave,NA,NA
+NE,2006,NA,Heineman Dave,NA,NA
+NE,2005,NA,Heineman Dave,NA,NA
+NE,2004,NA,Johanns Mike,NA,NA
+NE,2003,NA,Johanns Mike,NA,NA
+NE,2002,NA,Johanns Mike,NA,NA
+NE,2001,NA,Johanns Mike,NA,NA
 NH,2016,NA,,NA,Divided
 NH,2015,NA,,NA,Divided
 NH,2014,NA,,NA,Divided
@@ -511,8 +511,8 @@ NM,2004,D,Richardson Bill,D,All Democrat
 NM,2003,D,Richardson Bill,D,All Democrat
 NM,2002,D,Johnson Gary E.,R,Divided
 NM,2001,D,Johnson Gary E.,R,Divided
-NV,2016,NA,,NA,All Republican
-NV,2015,NA,,NA,All Republican
+NV,2016,R,,R,All Republican
+NV,2015,R,,R,All Republican
 NV,2014,NA,,NA,Divided
 NV,2013,NA,,NA,Divided
 NV,2012,NA,,NA,Divided
@@ -529,8 +529,8 @@ NV,2002,S,Guinn Kenny,R,Divided
 NV,2001,S,Guinn Kenny,R,Divided
 NY,2016,NA,,NA,Divided
 NY,2015,NA,,NA,Divided
-NY,2014,NA,,NA,All Democratic
-NY,2013,NA,,NA,All Democratic
+NY,2014,D,,D,All Democratic
+NY,2013,D,,D,All Democratic
 NY,2012,NA,,NA,Divided
 NY,2011,S,Cuomo Andrew,D,Divided
 NY,2010,D,Paterson David A.,D,All Democrat
@@ -543,11 +543,11 @@ NY,2004,S,Pataki George E.,R,Divided
 NY,2003,S,Pataki George E.,R,Divided
 NY,2002,S,Pataki George E.,R,Divided
 NY,2001,S,Pataki George E.,R,Divided
-OH,2016,NA,,NA,All Republican
-OH,2015,NA,,NA,All Republican
-OH,2014,NA,,NA,All Republican
-OH,2013,NA,,NA,All Republican
-OH,2012,NA,,NA,All Republican
+OH,2016,R,,R,All Republican
+OH,2015,R,,R,All Republican
+OH,2014,R,,R,All Republican
+OH,2013,R,,R,All Republican
+OH,2012,R,,R,All Republican
 OH,2011,R,Kasich John,R,All Republican
 OH,2010,S,Strickland Ted,D,Divided
 OH,2009,S,Strickland Ted,D,Divided
@@ -559,11 +559,11 @@ OH,2004,R,Taft Bob,R,All Republican
 OH,2003,R,Taft Bob,R,All Republican
 OH,2002,R,Taft Bob,R,All Republican
 OH,2001,R,Taft Bob,R,All Republican
-OK,2016,NA,,NA,All Republican
-OK,2015,NA,,NA,All Republican
-OK,2014,NA,,NA,All Republican
-OK,2013,NA,,NA,All Republican
-OK,2012,NA,,NA,All Republican
+OK,2016,R,,R,All Republican
+OK,2015,R,,R,All Republican
+OK,2014,R,,R,All Republican
+OK,2013,R,,R,All Republican
+OK,2012,R,,R,All Republican
 OK,2011,R,Fallin Mary,R,All Republican
 OK,2010,R,Henry Brad,D,Divided
 OK,2009,R,Henry Brad,D,Divided
@@ -575,10 +575,10 @@ OK,2004,D,Henry Brad,D,All Democrat
 OK,2003,D,Henry Brad,D,All Democrat
 OK,2002,D,Keating Frank,R,Divided
 OK,2001,D,Keating Frank,R,Divided
-OR,2016,NA,,NA,All Democratic
-OR,2015,NA,,NA,All Democratic
-OR,2014,NA,,NA,All Democratic
-OR,2013,NA,,NA,All Democratic
+OR,2016,D,,D,All Democratic
+OR,2015,D,,D,All Democratic
+OR,2014,D,,D,All Democratic
+OR,2013,D,,D,All Democratic
 OR,2012,NA,,NA,Divided
 OR,2011,S,Kitzhaber John A.,D,Divided
 OR,2010,D,Kulongoski Ted,D,All Democrat
@@ -593,9 +593,9 @@ OR,2002,R,Kitzhaber John,D,Divided
 OR,2001,R,Kitzhaber John,D,Divided
 PA,2016,NA,,NA,Divided
 PA,2015,NA,,NA,Divided
-PA,2014,NA,,NA,All Republican
-PA,2013,NA,,NA,All Republican
-PA,2012,NA,,NA,All Republican
+PA,2014,R,,R,All Republican
+PA,2013,R,,R,All Republican
+PA,2012,R,,R,All Republican
 PA,2011,R,Corbett Tom,R,All Republican
 PA,2010,S,Rendell Edward G.,D,Divided
 PA,2009,S,Rendell Edward G.,D,Divided
@@ -607,9 +607,9 @@ PA,2004,R,Rendell Edward G.,D,Divided
 PA,2003,R,Rendell Edward G.,D,Divided
 PA,2002,R,Schweiker Mark,R,All Republican
 PA,2001,R,Switch; Ridge then Schweiker,R,All Republican
-RI,2016,NA,,NA,All Democratic
-RI,2015,NA,,NA,All Democratic
-RI,2014,NA,,NA,All Democratic
+RI,2016,D,,D,All Democratic
+RI,2015,D,,D,All Democratic
+RI,2014,D,,D,All Democratic
 RI,2013,NA,,NA,Divided
 RI,2012,NA,,NA,Divided
 RI,2011,D,Chafee Lincoln,Other,Divided
@@ -623,11 +623,11 @@ RI,2004,D,Carcieri Don,R,Divided
 RI,2003,D,Carcieri Don,R,Divided
 RI,2002,D,Almond Lincoln C.,R,Divided
 RI,2001,D,Almond Lincoln C.,R,Divided
-SC,2016,NA,,NA,All Republican
-SC,2015,NA,,NA,All Republican
-SC,2014,NA,,NA,All Republican
-SC,2013,NA,,NA,All Republican
-SC,2012,NA,,NA,All Republican
+SC,2016,R,,R,All Republican
+SC,2015,R,,R,All Republican
+SC,2014,R,,R,All Republican
+SC,2013,R,,R,All Republican
+SC,2012,R,,R,All Republican
 SC,2011,R,Haley Nikki R.,R,All Republican
 SC,2010,R,Sanford Mark,R,All Republican
 SC,2009,R,Sanford Mark,R,All Republican
@@ -639,11 +639,11 @@ SC,2004,R,Sanford Mark,R,All Republican
 SC,2003,R,Sanford Mark,R,All Republican
 SC,2002,R,Hodges Jim,D,Divided
 SC,2001,R,Hodges Jim,D,Divided
-SD,2016,NA,,NA,All Republican
-SD,2015,NA,,NA,All Republican
-SD,2014,NA,,NA,All Republican
-SD,2013,NA,,NA,All Republican
-SD,2012,NA,,NA,All Republican
+SD,2016,R,,R,All Republican
+SD,2015,R,,R,All Republican
+SD,2014,R,,R,All Republican
+SD,2013,R,,R,All Republican
+SD,2012,R,,R,All Republican
 SD,2011,R,Daugaard Dennis,R,All Republican
 SD,2010,R,Rounds Mike,R,All Republican
 SD,2009,R,Rounds Mike,R,All Republican
@@ -655,11 +655,11 @@ SD,2004,R,Rounds Mike,R,All Republican
 SD,2003,R,Rounds Mike,R,All Republican
 SD,2002,R,Janklow William J.,R,All Republican
 SD,2001,R,Janklow William J.,R,All Republican
-TN,2016,NA,,NA,All Republican
-TN,2015,NA,,NA,All Republican
-TN,2014,NA,,NA,All Republican
-TN,2013,NA,,NA,All Republican
-TN,2012,NA,,NA,All Republican
+TN,2016,R,,R,All Republican
+TN,2015,R,,R,All Republican
+TN,2014,R,,R,All Republican
+TN,2013,R,,R,All Republican
+TN,2012,R,,R,All Republican
 TN,2011,R,Haslam Bill,R,All Republican
 TN,2010,R,Bredesen Phil,D,Divided
 TN,2009,R,Bredesen Phil,D,Divided
@@ -671,11 +671,11 @@ TN,2004,D,Bredesen Phil,D,All Democrat
 TN,2003,D,Bredesen Phil,D,All Democrat
 TN,2002,D,Sundquist Don,R,Divided
 TN,2001,D,Sundquist Don,R,Divided
-TX,2016,NA,,NA,All Republican
-TX,2015,NA,,NA,All Republican
-TX,2014,NA,,NA,All Republican
-TX,2013,NA,,NA,All Republican
-TX,2012,NA,,NA,All Republican
+TX,2016,R,,R,All Republican
+TX,2015,R,,R,All Republican
+TX,2014,R,,R,All Republican
+TX,2013,R,,R,All Republican
+TX,2012,R,,R,All Republican
 TX,2011,R,Perry Rick,R,All Republican
 TX,2010,R,Perry Rick,R,All Republican
 TX,2009,R,Perry Rick,R,All Republican
@@ -687,11 +687,11 @@ TX,2004,R,Perry Rick,R,All Republican
 TX,2003,R,Perry Rick,R,All Republican
 TX,2002,S,Perry Rick,R,Divided
 TX,2001,S,Perry Rick,R,Divided
-UT,2016,NA,,NA,All Republican
-UT,2015,NA,,NA,All Republican
-UT,2014,NA,,NA,All Republican
-UT,2013,NA,,NA,All Republican
-UT,2012,NA,,NA,All Republican
+UT,2016,R,,R,All Republican
+UT,2015,R,,R,All Republican
+UT,2014,R,,R,All Republican
+UT,2013,R,,R,All Republican
+UT,2012,R,,R,All Republican
 UT,2011,R,Herbert Gary,R,All Republican
 UT,2010,R,Herbert Gary,R,All Republican
 UT,2009,R,Huntsman Jon M. Jr.,R,All Republican
@@ -719,11 +719,11 @@ VA,2004,R,Warner Mark,D,Divided
 VA,2003,R,Warner Mark,D,Divided
 VA,2002,R,Warner Mark,D,Divided
 VA,2001,R,Gilmore Jame S. III,R,All Republican
-VT,2016,NA,,NA,All Democratic
-VT,2015,NA,,NA,All Democratic
-VT,2014,NA,,NA,All Democratic
-VT,2013,NA,,NA,All Democratic
-VT,2012,NA,,NA,All Democratic
+VT,2016,D,,D,All Democratic
+VT,2015,D,,D,All Democratic
+VT,2014,D,,D,All Democratic
+VT,2013,D,,D,All Democratic
+VT,2012,D,,D,All Democratic
 VT,2011,D,Shumlin Peter,D,All Democrat
 VT,2010,D,Douglas Jim,R,Divided
 VT,2009,D,Douglas Jim,R,Divided
@@ -737,9 +737,9 @@ VT,2002,S,Dean Howard,D,Divided
 VT,2001,S,Dean Howard,D,Divided
 WA,2016,NA,,NA,Divided
 WA,2015,NA,,NA,Divided
-WA,2014,NA,,NA,All Democratic
-WA,2013,NA,,NA,All Democratic
-WA,2012,NA,,NA,All Democratic
+WA,2014,D,,D,All Democratic
+WA,2013,D,,D,All Democratic
+WA,2012,D,,D,All Democratic
 WA,2011,D,Gregoire Christine,D,All Democrat
 WA,2010,D,Gregoire Christine,D,All Democrat
 WA,2009,D,Gregoire Christine,D,All Democrat
@@ -751,11 +751,11 @@ WA,2004,S,Locke Gary,D,Divided
 WA,2003,S,Locke Gary,D,Divided
 WA,2002,D,Locke Gary,D,All Democrat
 WA,2001,S,Locke Gary,D,Divided
-WI,2016,NA,,NA,All Republican
-WI,2015,NA,,NA,All Republican
-WI,2014,NA,,NA,All Republican
-WI,2013,NA,,NA,All Republican
-WI,2012,NA,,NA,All Republican
+WI,2016,R,,R,All Republican
+WI,2015,R,,R,All Republican
+WI,2014,R,,R,All Republican
+WI,2013,R,,R,All Republican
+WI,2012,R,,R,All Republican
 WI,2011,R,Walker Scott,R,All Republican
 WI,2010,D,Doyle Jim,D,All Democrat
 WI,2009,D,Doyle Jim,D,All Democrat
@@ -769,9 +769,9 @@ WI,2002,S,McCallum Scott,R,Divided
 WI,2001,S,Switch; thompson then McCallum,R,Divided
 WV,2016,NA,,NA,Divided
 WV,2015,NA,,NA,Divided
-WV,2014,NA,,NA,All Democratic
-WV,2013,NA,,NA,All Democratic
-WV,2012,NA,,NA,All Democratic
+WV,2014,D,,D,All Democratic
+WV,2013,D,,D,All Democratic
+WV,2012,D,,D,All Democratic
 WV,2011,D,Tomblin Earl Ray,D,All Democrat
 WV,2010,D,Manchin Joe III,D,All Democrat
 WV,2009,D,Manchin Joe III,D,All Democrat
@@ -783,11 +783,11 @@ WV,2004,D,Wise Bob,D,All Democrat
 WV,2003,D,Wise Bob,D,All Democrat
 WV,2002,D,Wise Bob,D,All Democrat
 WV,2001,D,Wise Bob,D,All Democrat
-WY,2016,NA,,NA,All Republican
-WY,2015,NA,,NA,All Republican
-WY,2014,NA,,NA,All Republican
-WY,2013,NA,,NA,All Republican
-WY,2012,NA,,NA,All Republican
+WY,2016,R,,R,All Republican
+WY,2015,R,,R,All Republican
+WY,2014,R,,R,All Republican
+WY,2013,R,,R,All Republican
+WY,2012,R,,R,All Republican
 WY,2011,R,Mead Matthew,R,All Republican
 WY,2010,R,Freudenthal Dave,D,Divided
 WY,2009,R,Freudenthal Dave,D,Divided
