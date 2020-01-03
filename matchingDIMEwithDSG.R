@@ -1,3 +1,10 @@
+ssh -Y judgelord@linstat.ssc.wisc.edu
+
+
+cd ../../../project/judgelord/state-level-DIME
+ls
+git pull
+R
 
 library(here)
 source(here("setup.R"))
@@ -9,9 +16,14 @@ source(here("setup.R"))
 # DIME DATA
 # dime <- read.csv(here("data/dime_contributors.csv"))
 
+load("data/dime_contributors_1979_2018.rdata")
+dime <- contribs
 # TRIM DOWN
-# dime %<>% filter(contributor.type == "I")
-# dime %<>% mutate(last_name = str_extract(dime$most.recent.contributor.name, "[a-z]*") )
+dime %<>% filter(contributor.type == "I")
+names(dime)
+
+dime %>% filter(!is.na(amount_2018))
+  # dime %<>% mutate(last_name = str_extract(dime$most.recent.contributor.name, "[a-z]*") )
 # dime %<>% filter(last_name %in% d$last_name)
 
 # Clean up DIME names 
@@ -31,11 +43,7 @@ source(here("setup.R"))
 load(here("data/dime_CGS_matches.Rdata"))
 
 # inspect
-cbind(
-  dime$last_name[1:100],
-  dime$first_name[1:100],
-  dime$middle_initial[1:100],
-  dime$most.recent.contributor.name[1:100])
+dime %>% select(last_name, first_name, middle_initial, most.recent.contributor.name) %>% top_n(100) %>% kable()
 
 
 #######################################################
