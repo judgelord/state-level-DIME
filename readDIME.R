@@ -13,7 +13,8 @@ source(here("setup.R"))
 # CGS #
 #######
 d <- readxl::read_xlsx(here("data/CSG Directory.xlsx")) %>% 
-  filter(!is.na(LAST_NAME))
+  filter(!is.na(LAST_NAME)) %>% 
+  mutate(last_name = tolower(LAST_NAME) ) 
 
 # GET DIME DATA (careful, this is >3GB)
 # download.file("https://dataverse.harvard.edu/api/access/datafile/2865300?gbrecs=true", 
@@ -23,16 +24,17 @@ d <- readxl::read_xlsx(here("data/CSG Directory.xlsx")) %>%
 # dime <- read.csv(here("data/dime_contributors.csv"))
 
 load("data/dime_contributors_1979_2018.rdata")
-dime <- contribs
+dime <- contribs %>% as_tibble()
+
 # TRIM DOWN
 dime %<>% filter(contributor.type == "I")
 names(dime)
-
-dime %>% count(is.na(amount_2018))
+head(dime$last_name)
+dime %>% count(is.na(amount_2018)) # note a lot of 0s here may be NAs because SQL data on PAC data shows incomplete data for 2018 cycle
 dime %<>% mutate(last_name = str_extract(dime$most.recent.contributor.name, "[a-z]*") )
 
-# Subset to last names in d (from )
-dime %<>% filter(last_name %in% unique(d$last_name))
+# Subset to last names in d (from data/CSG Directory.xlsx)
+dime %<>% filter(last_name %in% unique(d$last_name)) # LAST_NAME?
 
 # Clean up DIME names
 dime %<>% mutate(name = str_replace(most.recent.contributor.name, " dr | jr |[0-9]", " ") )
