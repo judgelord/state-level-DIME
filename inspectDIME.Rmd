@@ -1,0 +1,21 @@
+---
+title: "Inspect DIME individual contribution data"
+author: "Devin Judge-Lord"
+date: "1/5/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+load(dime, file = here("data/dime_CGS_matches.Rdata"))
+```
+
+```{r inspect_dime}
+p <- dime %>% select(bonica.cid, starts_with("amount")) %>% gather(key = "year", value = "amount", -bonica.cid) %>% 
+  ggplot() +
+  aes(x = year, y = amount) + 
+  geom_line(alpha = .01)
+
+ggsave("Figs/bonicaCID.pdf", plot = p)
+```
