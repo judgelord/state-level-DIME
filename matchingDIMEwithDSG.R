@@ -109,8 +109,13 @@ df %<>% group_by(id) %>%
 sum(df$potential_matches>1)
 df %<>% rename(DSG.id = id)
 
+names(df)
+
 # select 
-df %<>% select(potential_matches, match, LAST_NAME, FIRST_NAME, MIDDLE_NAME, most.recent.contributor.name, EMAIL, CATEGORY, most.recent.contributor.occupation, DEPARTMENT, most.recent.contributor.employer, WORK_CITY, most.recent.contributor.city, WORK_ADDRESS_1,WORK_ADDRESS_2,most.recent.contributor.address, DSG.id, bonica.cid)
+df %<>% select(potential_matches, match, LAST_NAME, FIRST_NAME, MIDDLE_NAME, most.recent.contributor.name, 
+               EMAIL, CATEGORY, most.recent.contributor.occupation, DEPARTMENT, most.recent.contributor.employer, WORK_CITY, most.recent.contributor.city, WORK_ADDRESS_1,WORK_ADDRESS_2,
+               most.recent.contributor.address, contributor.cfscore,
+               DSG.id, bonica.cid) #%>% distinct() 
 # write out best guesses in order
 write.csv(df, 
           "data/DIME-DSG-matches.csv")
@@ -120,6 +125,9 @@ n_distinct(df)
 # top professions
 df %>% group_by(most.recent.contributor.occupation) %>% 
   summarise(n = n()) %>% arrange(-n)
+
+
+
 
 
 
